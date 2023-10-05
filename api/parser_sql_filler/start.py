@@ -15,7 +15,7 @@ class Combine():
                     pr = stud[12].lower()=='да'
                     agr= stud[13].lower()=='да'
                     orig=stud[14].lower()=='да'
-                    self.__con.insert_db(key,b[key][0][fac_num],int(stud[0]),int(stud[1]),int(stud[2]),int(stud[8]),int(stud[7]),pr,agr,orig)
+                    self.__con.addin_db(key,b[key][0][fac_num],int(stud[0]),int(stud[1]),int(stud[2]),int(stud[8]),int(stud[7]),pr,agr,orig)
 
 
 if __name__ == "__main__":

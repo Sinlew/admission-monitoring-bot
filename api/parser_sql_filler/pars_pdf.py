@@ -26,6 +26,7 @@ class Pdf_work():
             if r.status_code == 200:
                     with open(file_path,"wb") as f:
                         f.write(r.content)
+                    print("file download")
         else:
             print("file exist")
 
