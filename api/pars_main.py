@@ -17,9 +17,10 @@ class Combine:
             for key in b.keys():
                 for fac_num in range(len(b[key][0])):
                     for stud in b[key][1][fac_num]:
-                        pr: bool = stud[12].lower() == "да"
-                        agr: bool = stud[13].lower() == "да"
-                        orig: bool = stud[14].lower() == "да"
+                        "приведение к bool значению строковых данных о наличии приоритета, согласия, оригинала"
+                        priority_confirmed, agreement_confirmed, original_confirmed = self.is_confirmed_list(
+                            stud[12:15]
+                        )
                         if stud[2] == "-":
                             stud[2] = 0
 
@@ -31,18 +32,19 @@ class Combine:
                             snils=int(stud[2]),
                             points=int(stud[8]),
                             points_fin=int(stud[7]),
-                            priority=pr,
-                            agreement=agr,
-                            original=orig,
+                            priority=priority_confirmed,
+                            agreement=agreement_confirmed,
+                            original=original_confirmed,
                         )
         else:
             print("[info] database is not empty")
             for key in b.keys():
                 for fac_num in range(len(b[key][0])):
                     for stud in b[key][1][fac_num]:
-                        pr = stud[12].lower() == "да"
-                        agr = stud[13].lower() == "да"
-                        orig = stud[14].lower() == "да"
+                        "приведение к bool значению строковых данных о наличии приоритета, согласия, оригинала"
+                        priority_confirmed, agreement_confirmed, original_confirmed = self.is_confirmed_list(
+                            stud[12:15]
+                        )
                         if stud[2] == "-":
                             stud[2] = 0
                         self.__con.update_db(
@@ -51,9 +53,9 @@ class Combine:
                             rating=int(stud[0]),
                             points=int(stud[8]),
                             points_fin=int(stud[7]),
-                            priority=pr,
-                            agreement=agr,
-                            original=orig,
+                            priority=priority_confirmed,
+                            agreement=agreement_confirmed,
+                            original=original_confirmed,
                         )
         self.delete_files_in_folder("pdf")
 
@@ -66,7 +68,14 @@ class Combine:
             except Exception as e:
                 print(f"Ошибка при удалении файла {file_path}. {e}")
 
+    def is_confirmed_list(self, text: list) -> list:
+        """
+        приведение к bool значению строковых данных из списка
+        """
+        res = [str(text[i]).lower() == "да" for i in range(len(text))]
+        return res
+
 
 if __name__ == "__main__":
     com = Combine(yar_link)
-    com.db_filling()
+   

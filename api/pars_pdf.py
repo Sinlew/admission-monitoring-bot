@@ -78,9 +78,5 @@ class Pdf_work:
 
 
 if __name__ == "__main__":
-    a = Pdf_work("/Abitur/abiturientu-2022/reytingovyy-spiski-2022/Reiting_sait_biofak.pdf%20(53).pdf")
-    # print(a.get_atr_list("/Abitur/abiturientu-2022/reytingovyy-spiski-2022/Reiting_sait_urfak.pdf%20(53).pdf"))
-    # print(a.set_atr_list())
-    # print(a.set_fac_number())
-
-    print(a.list_directions)
+    pass
+    
